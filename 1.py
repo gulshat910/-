@@ -38,6 +38,12 @@ df.pivot_table(values='Survived', index='Pclass', columns='Sex', aggfunc='mean')
 minors_3rd_class = df[(df['Age'] < 18) & (df['Pclass'] == 3) & (df['Survived'] == 1)]
 minors_3rd_class.sort_values('Age', ascending=False)[['Name', 'Age', 'Pclass', 'Survived']]
 
+# Самый пожилой мужчина, который не выжил
+oldest_dead_man = df[(df['Sex'] == 'male') & (df['Survived'] == 0)].sort_values('Age', ascending=False).head(1)
+oldest_dead_man[['Name', 'Age', 'Sex', 'Survived']]
+
+
+
 # 1. Какой фактор — пол или класс каюты — оказывал большее влияние на выживаемость?
 #    Пол оказывал большее влияние на выживаемость, чем класс каюты.
 #    Цифры из анализа:
@@ -52,9 +58,4 @@ minors_3rd_class.sort_values('Age', ascending=False)[['Name', 'Age', 'Pclass', '
 #    Да, анализ подтверждает это правило:
 #    - Женщины имели значительно более высокие шансы (74.2% vs 18.9%)
 #    - Дети также имели приоритет при спасении
-#    Данные по возрастным группам и полу показывают, что женщины и дети 
-#    действительно спасались в первую очередь
-
-# Самый пожилой мужчина, который не выжил
-oldest_dead_man = df[(df['Sex'] == 'male') & (df['Survived'] == 0)].sort_values('Age', ascending=False).head(1)
-oldest_dead_man[['Name', 'Age', 'Sex', 'Survived']]
+#    Данные по возрастным группам и полу показывают, что женщины и дети действительно спасались в первую очередь
