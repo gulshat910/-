@@ -26,13 +26,13 @@ df['AgeGroup'] = df['Age'].apply(get_age_group)
 df[['Age', 'AgeGroup']].head()
 
 # Процент выживших мужчин и женщин
-df.groupby('Sex')['Survived'].mean() * 100
+df.groupby('Sex')['Survived'].mean() 
 
 # Процент выживших по классам
-df.groupby('Pclass')['Survived'].mean() * 100
+df.groupby('Pclass')['Survived'].mean() 
 
 # Сводная таблица по полу и классу
-df.pivot_table(values='Survived', index='Pclass', columns='Sex', aggfunc='mean') * 100
+df.pivot_table(values='Survived', index='Pclass', columns='Sex', aggfunc='mean') 
 
 # Несовершеннолетние из 3 класса, которые выжили
 minors_3rd_class = df[(df['Age'] < 18) & (df['Pclass'] == 3) & (df['Survived'] == 1)]
