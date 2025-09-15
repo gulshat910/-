@@ -33,7 +33,7 @@ df.groupby('Pclass')['Survived'].mean()
 
 # Сводная таблица по полу и классу
 df.pivot_table(values='Survived', index='Pclass', columns='Sex', aggfunc='mean') 
-
+df.groupby(['Pclass', 'Sex'])['Survived'].mean().unstack()
 # Несовершеннолетние из 3 класса, которые выжили
 minors_3rd_class = df[(df['Age'] < 18) & (df['Pclass'] == 3) & (df['Survived'] == 1)]
 minors_3rd_class.sort_values('Age', ascending=False)[['Name', 'Age', 'Pclass', 'Survived']]
