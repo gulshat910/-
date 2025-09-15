@@ -32,15 +32,15 @@ df.groupby('Sex')['Survived'].mean()
 df.groupby('Pclass')['Survived'].mean() 
 
 # Сводная таблица по полу и классу
-df.pivot_table(values='Survived', index='Pclass', columns='Sex', aggfunc='mean') 
 df.groupby(['Pclass', 'Sex'])['Survived'].mean().unstack()
+
 # Несовершеннолетние из 3 класса, которые выжили
 minors_3rd_class = df[(df['Age'] < 18) & (df['Pclass'] == 3) & (df['Survived'] == 1)]
 minors_3rd_class.sort_values('Age', ascending=False)[['Name', 'Age', 'Pclass', 'Survived']]
 
 # Самый пожилой мужчина, который не выжил
-oldest_dead_man = df[(df['Sex'] == 'male') & (df['Survived'] == 0)].sort_values('Age', ascending=False).head(1)
-oldest_dead_man[['Name', 'Age', 'Sex', 'Survived']]
+oldest_dead_man = df[(df['Sex'] == 'male') & (df['Survived'] == 0)]
+oldest_dead_man.sort_values('Age', ascending=False).head(1)[['Name', 'Age', 'Sex', 'Survived']]
 
 
 
